@@ -6,6 +6,7 @@ import org.springframework.stereotype.Service;
 
 /**
  * 测试一下log4j2的配置
+ *
  * Created by zhaobing on 2017/4/10.
  */
 @Service
