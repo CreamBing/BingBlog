@@ -6,7 +6,7 @@ import org.springframework.stereotype.Service;
 
 /**
  * 测试一下log4j2的配置
- *
+ *log4j2针对一个包的多项配置会被覆盖
  * Created by zhaobing on 2017/4/10.
  */
 @Service
