@@ -3,13 +3,15 @@
 <Configuration status="off" monitorInterval="1800">
 
     <properties>
-        <property name="LOG_HOME">F:/log/logs</property>
+        <property name="LOG_HOME">/log/logs</property>
         <property name="ERROR_LOG_FILE_NAME">error</property>
     </properties>
 
 
     <Appenders>
         <Console name="Console" target="SYSTEM_OUT">
+            <!--控制台只输出level及以上级别的信息（onMatch），其他的直接拒绝（onMismatch）-->
+            <ThresholdFilter level="trace" onMatch="ACCEPT" onMismatch="DENY"/>
             <PatternLayout pattern="%d %-5p (%F:%L) - %m%n"/>
         </Console>
 
@@ -38,12 +40,16 @@
         <logger name="org.springframework.web" level="info">
         </logger>
 
-        <logger name="com.bing.bingblog.web.ctrl" level="error" includeLocation="true" additivity="false">
-            <appender-ref ref="ErrorLog"/>
+        <!--调试-->
+        <logger name="com.bing.bingblog" level="info" includeLocation="true" additivity="false">
             <appender-ref ref="Console"/>
         </logger>
 
-        <root level="info" includeLocation="true">
+        <logger name="com.bing.bingblog.web.ctrl" level="error" includeLocation="true" additivity="false">
+            <appender-ref ref="ErrorLog"/>
+        </logger>
+
+        <root level="trace" includeLocation="true">
             <appender-ref ref="Console"/>
         </root>
     </Loggers>

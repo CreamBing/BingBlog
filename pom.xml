@@ -18,7 +18,7 @@
     <dependencies>
 
         <!--spring start-->
-        <!--去掉spring-core中自带的commons-logging依赖，本项目采用log4jr日志-->
+        <!--去掉spring-core中自带的commons-logging依赖，本项目采用log4j日志-->
         <dependency>
             <groupId>org.springframework</groupId>
             <artifactId>spring-context</artifactId>

@@ -9,15 +9,16 @@
         <param-name>contextConfigLocation</param-name>
         <!-- 应用上下文配置文件 -->
         <param-value>
-            classpath*:**/applicationContext-*.xml
+            classpath*:spring/applicationContext-busi.xml
         </param-value>
     </context-param>
-
     <context-param>
         <param-name>log4jConfiguration</param-name>
         <param-value>/WEB-INF/classes/log4j2/log4j2.xml</param-value>
     </context-param>
-
+    <listener>
+        <listener-class>org.springframework.web.context.ContextLoaderListener</listener-class>
+    </listener>
     <!--对于log4j2，Servlet2.5以前的版本需要-->
     <listener>
         <listener-class>org.apache.logging.log4j.web.Log4jServletContextListener</listener-class>
