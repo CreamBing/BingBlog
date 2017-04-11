@@ -7,11 +7,11 @@
 		http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
 		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd">
 
-    <mvc:annotation-driven/>
-
-    <context:component-scan base-package="com.bing.bingblog.web.ctrl" use-default-filters="false">
-        <context:include-filter type="annotation" expression="org.springframework.stereotype.Controller"/>
+    <context:component-scan base-package="com.bing.bingblog.**.ctrl" use-default-filters="true">
+        <context:include-filter type="annotation" expression="org.springframework.stereotype.Controller" />
     </context:component-scan>
+
+    <mvc:annotation-driven/>
 
     <mvc:resources mapping="/static/**" location="/static/"/>
 

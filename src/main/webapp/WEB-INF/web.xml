@@ -3,22 +3,15 @@
          xmlns="http://java.sun.com/xml/ns/javaee" xmlns:web="http://java.sun.com/xml/ns/javaee"
          xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd"
          version="2.5">
-    <display-name>Archetype Created Web Application</display-name>
-
+    <display-name>bingblog</display-name>
     <context-param>
         <param-name>contextConfigLocation</param-name>
-        <!-- 应用上下文配置文件 -->
-        <param-value>
-            classpath*:spring/applicationContext-busi.xml
-        </param-value>
+        <param-value>classpath*:**/applicationContext-busi.xml</param-value>
     </context-param>
     <context-param>
         <param-name>log4jConfiguration</param-name>
         <param-value>/WEB-INF/classes/log4j2/log4j2.xml</param-value>
     </context-param>
-    <listener>
-        <listener-class>org.springframework.web.context.ContextLoaderListener</listener-class>
-    </listener>
     <!--对于log4j2，Servlet2.5以前的版本需要-->
     <listener>
         <listener-class>org.apache.logging.log4j.web.Log4jServletContextListener</listener-class>
@@ -35,8 +28,9 @@
         <dispatcher>INCLUDE</dispatcher>
         <dispatcher>ERROR</dispatcher>
     </filter-mapping>
-
-    <!-- Character Encoding filter -->
+    <listener>
+        <listener-class>org.springframework.web.context.ContextLoaderListener</listener-class>
+    </listener>
     <filter>
         <filter-name>encodingFilter</filter-name>
         <filter-class>org.springframework.web.filter.CharacterEncodingFilter</filter-class>
@@ -53,38 +47,32 @@
         <filter-name>encodingFilter</filter-name>
         <url-pattern>/*</url-pattern>
     </filter-mapping>
-
-
     <servlet>
         <servlet-name>springServlet</servlet-name>
         <servlet-class>org.springframework.web.servlet.DispatcherServlet</servlet-class>
         <init-param>
             <param-name>contextConfigLocation</param-name>
-            <param-value>classpath*:/spring/springMVC.xml</param-value>
+            <param-value>classpath*:spring/springMVC.xml</param-value>
         </init-param>
         <load-on-startup>1</load-on-startup>
     </servlet>
-
     <servlet-mapping>
         <servlet-name>springServlet</servlet-name>
         <url-pattern>/</url-pattern>
     </servlet-mapping>
-
     <session-config>
         <session-timeout>30</session-timeout>
     </session-config>
-    <welcome-file-list>
-        <welcome-file>index</welcome-file>
-    </welcome-file-list>
-
     <error-page>
-        <error-code>404</error-code>
-        <location>/404.html</location>
+        <exception-type>java.lang.Throwable</exception-type>
+        <location>/WEB-INF/views/error/500.jsp</location>
     </error-page>
-
     <error-page>
         <error-code>500</error-code>
-        <location>/500.html</location>
+        <location>/WEB-INF/views/error/500.jsp</location>
     </error-page>
-
+    <error-page>
+        <error-code>404</error-code>
+        <location>/WEB-INF/views/error/404.jsp</location>
+    </error-page>
 </web-app>

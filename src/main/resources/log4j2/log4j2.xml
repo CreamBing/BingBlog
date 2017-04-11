@@ -15,11 +15,23 @@
             <PatternLayout pattern="%d %-5p (%F:%L) - %m%n"/>
         </Console>
 
-        <RollingRandomAccessFile name="ErrorLog"
-                                 fileName="${LOG_HOME}/${ERROR_LOG_FILE_NAME}.log"
-                                 filePattern="${LOG_HOME}/${ERROR_LOG_FILE_NAME}.log.%d{yyyy-MM-dd}.gz">
-            <PatternLayout
-                    pattern="%d %-5p (%F:%L) - %m%n"/>
+        <RollingRandomAccessFile name="CtrlErrorLog"
+                                 fileName="${LOG_HOME}/ctrl.${ERROR_LOG_FILE_NAME}.log"
+                                 filePattern="${LOG_HOME}/ctrl.${ERROR_LOG_FILE_NAME}.log.%d{yyyy-MM-dd}.gz">
+            <ThresholdFilter level="warn" onMatch="ACCEPT" onMismatch="DENY"/>
+            <PatternLayout pattern="%d %-5p (%F:%L) - %m%n"/>
+            <Policies>
+                <TimeBasedTriggeringPolicy/>
+                <SizeBasedTriggeringPolicy size="100 MB"/>
+            </Policies>
+            <DefaultRolloverStrategy max="20"/>
+        </RollingRandomAccessFile>
+
+        <RollingRandomAccessFile name="BusiErrorLog"
+                                 fileName="${LOG_HOME}/busi.${ERROR_LOG_FILE_NAME}.log"
+                                 filePattern="${LOG_HOME}/busi.${ERROR_LOG_FILE_NAME}.log.%d{yyyy-MM-dd}.gz">
+            <ThresholdFilter level="warn" onMatch="ACCEPT" onMismatch="DENY"/>
+            <PatternLayout pattern="%d %-5p (%F:%L) - %m%n"/>
             <Policies>
                 <TimeBasedTriggeringPolicy/>
                 <SizeBasedTriggeringPolicy size="100 MB"/>
@@ -40,13 +52,14 @@
         <logger name="org.springframework.web" level="info">
         </logger>
 
-        <!--调试-->
-        <logger name="com.bing.bingblog" level="info" includeLocation="true" additivity="false">
-            <appender-ref ref="Console"/>
+        <!--业务日志-->
+        <logger name="com.bing.bingblog.busi.service" level="trace" includeLocation="true" additivity="true">
+            <appender-ref ref="BusiErrorLog"/>
         </logger>
 
-        <logger name="com.bing.bingblog.web.ctrl" level="error" includeLocation="true" additivity="false">
-            <appender-ref ref="ErrorLog"/>
+        <!--控制层日志-->
+        <logger name="com.bing.bingblog.web.ctrl" level="trace" includeLocation="true" additivity="true">
+            <appender-ref ref="CtrlErrorLog"/>
         </logger>
 
         <root level="trace" includeLocation="true">
