@@ -11,5 +11,18 @@
     3.项目必须写好changelog
 
 具体：
-    2017/4/11-2017/4/?
-        调查一种前后台完全分离的技术实现
+    2017/4/11-2017/4/11
+        调查一种前后台完全分离的技术实现,目前暂用node.js作为中间层
+    2017/4/11-2017/4/12
+        搭建github page,成功搭建github+hexo博客，地址：https://creambing.github.io/
+    2017/4/12-2017/4/12
+        本地搭建mock服务器，采用的阿里巴巴的RAP开源产品，有web管理页面,集成了mock
+        官方地址：http://rapapi.org/org/index.do
+        github用户手册地址：https://github.com/thx/RAP/wiki/user_manual_cn
+    2017/4/12-2017/4/13
+        学完《Node 即学即用》
+    2017/4/12-2017/4/?
+        在github上clone nswbmw的N-blog项目，该项目是node express的一个简单blog项目，搭建mangodb,跑起项目
+        项目地址：https://github.com/nswbmw/N-blog
+        学习express开发流程和相关知识
+        学习node.js
